@@ -58,7 +58,7 @@ def write_info_to_file(train_path, val_path,
     
     image_size = [image_info["width"], image_info["height"]]
 
-    with open(image_txt_file, "w") as file:
+    with open(image_txt_name, "w") as file:
       for id in range(mark, num_annots):
         if annots[id]["image_id"] == image_info["id"]:
           bbox = annots[id]["bbox"]
