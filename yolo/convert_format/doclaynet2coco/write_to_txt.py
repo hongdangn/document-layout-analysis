@@ -54,7 +54,7 @@ def write_info_to_file(train_path, val_path,
     image_txt_name = image_name.replace(type_file, ".txt")
 
     image_txt_file = os.path.join(labels_path, image_txt_name)
-    os.makedirs(image_txt_file)
+    # os.makedirs(image_txt_file)
     
     image_size = [image_info["width"], image_info["height"]]
 
