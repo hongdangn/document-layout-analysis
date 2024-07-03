@@ -24,4 +24,4 @@ if __name__ == "__main__":
                         required=True)
     
     args = parser.parse_args()
-    train(args.saved_model, args.yaml_dataset, args.num_epochs)
+    train(args.saved_model, args.yaml_dataset)
