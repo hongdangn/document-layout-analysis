@@ -21,7 +21,8 @@ if __name__ == "__main__":
                         help="Yaml file of the dataset")
     
     parser.add_argument("--num_epochs",
+                        type=int,
                         required=True)
     
     args = parser.parse_args()
-    train(args.saved_model, args.yaml_dataset)
+    train(args.saved_model, args.yaml_dataset, args.num_epochs)
