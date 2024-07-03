@@ -97,9 +97,9 @@ if __name__ == "__main__":
     shutil.copy(args.val_json, args.folder)
 
     write_info_to_file(args.train_path, args.val_path,
-                       args.train_info, args.val_info,
+                       args.train_json, args.val_json,
                        train=True)
     
     write_info_to_file(args.train_path, args.val_path,
-                       args.train_info, args.val_info,
+                       args.train_json, args.val_json,
                        train=False)
