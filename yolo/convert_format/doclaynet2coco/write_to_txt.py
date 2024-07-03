@@ -30,8 +30,8 @@ def normalize(image_size, bbox):
   return [x_center, y_center, width, height]
 
 
-def write_info_to_file(train_info, 
-                       val_info,
+def write_info_to_file(train_path, val_path,
+                       train_info, val_info,
                        train=True):
   """
      - write into labels_folder image file (type: .txt)
@@ -40,6 +40,7 @@ def write_info_to_file(train_info,
         category_id x_center y_center width height
   """
 
+  labels_path = train_path + "/labels" if train else val_path + "/labels"
   path_info = train_info if train else val_info
   images_info = json.load(open(path_info))
 
@@ -49,7 +50,12 @@ def write_info_to_file(train_info,
   for image_info in images_info["images"]:
     image_name = image_info["file_name"]
     type_file = image_name[image_name.find('.') :] # type_image: .jpg, .png
-    image_txt_file = image_name.replace(type_file, ".txt")
+
+    image_txt_name = image_name.replace(type_file, ".txt")
+
+    image_txt_file = os.path.join(labels_path, image_txt_name)
+    os.makedirs(image_txt_file)
+    
     image_size = [image_info["width"], image_info["height"]]
 
     with open(image_txt_file, "w") as file:
@@ -92,8 +98,10 @@ if __name__ == "__main__":
     shutil.copy(args.train_json, args.new_train_json)
     shutil.copy(args.val_json, args.new_val_json)
 
-    write_info_to_file(args.train_info, args.val_info,
+    write_info_to_file(args.train_path, args.val_path,
+                       args.train_info, args.val_info,
                        train=True)
     
-    write_info_to_file(args.train_info, args.val_info,
+    write_info_to_file(args.train_path, args.val_path,
+                       args.train_info, args.val_info,
                        train=False)
