@@ -86,17 +86,15 @@ if __name__ == "__main__":
                     required=True)
     parser.add_argument("--val_json", 
                         required=True)
-    parser.add_argument("--new_train_json", 
+    parser.add_argument("--folder", 
                     required=True)
-    parser.add_argument("--new_val_json", 
-                        required=True)
     
     args = parser.parse_args()
 
     make_yolo_dataset_dir(args.train_path, args.val_path)
 
-    shutil.copy(args.train_json, args.new_train_json)
-    shutil.copy(args.val_json, args.new_val_json)
+    shutil.copy(args.train_json, args.folder)
+    shutil.copy(args.val_json, args.folder)
 
     write_info_to_file(args.train_path, args.val_path,
                        args.train_info, args.val_info,
